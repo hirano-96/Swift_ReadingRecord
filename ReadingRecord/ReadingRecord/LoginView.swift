@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct LoginView: View {
-    @EnvironmentObject var loginController: LoginController
+    @ObservedObject var loginController: LoginController = LoginController()
     @State var inputName: String = ""
     @State var inputPassword: String = ""
     @State var loginFlag: Bool = false
-    
+    @State var createFlag: Bool = false
+
     var body: some View {
         NavigationView{
-            
             VStack(alignment: .center){
                 Text("Reading Record").font(.system(size: 48,weight: .heavy))
                     .foregroundColor(Color.primary)
@@ -34,9 +34,9 @@ struct LoginView: View {
                             .stroke(Color.primary))
                     
                     Button(action: {
-                        loginFlag = true
-                    })
-                    {
+                        loginFlag = loginController.loginApp(name: self.inputName, password: self.inputPassword)
+                    },
+                    label: {
                         Text("Login")
                             .fontWeight(.medium)
                             .frame(maxWidth: 260)
@@ -44,7 +44,7 @@ struct LoginView: View {
                             .padding(8)
                             .background(Color.gray)
                             .cornerRadius(8)
-                    }
+                    })
                     .fullScreenCover(isPresented: $loginFlag) {
                         MainView()
                     }
@@ -53,7 +53,7 @@ struct LoginView: View {
                 .frame(height: 200)
                 
                 Button(action: {
-                    print("ユーザー作成")
+                    createFlag = true
                 },
                 label: {
                     Text("Cerate User")
@@ -63,10 +63,12 @@ struct LoginView: View {
                         .padding(12)
                         .cornerRadius(8)
                 })
+                .fullScreenCover(isPresented: $createFlag) {
+                    CreateUserView()
+                }
             }
             .frame(height: 400)
         }
-
     }
 }
 

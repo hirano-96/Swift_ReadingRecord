@@ -9,7 +9,12 @@ import SwiftUI
 
 struct MainView: View {
     var body: some View {
-        Text("ReadingRecord")
+        NavigationView{
+            VStack(alignment: .center){
+                Text("Books").font(.system(size: 48,weight: .heavy))
+                    .foregroundColor(Color.primary)
+            }
+        }
     }
 }
 
