@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct LoginView: View {
+    @EnvironmentObject var loginController: LoginController
     @State var inputName: String = ""
     @State var inputPassword: String = ""
+    @State var loginFlag: Bool = false
     
     var body: some View {
         NavigationView{
@@ -32,9 +34,9 @@ struct LoginView: View {
                             .stroke(Color.primary))
                     
                     Button(action: {
-                        print("ログイン処理")
-                    },
-                    label: {
+                        loginFlag = true
+                    })
+                    {
                         Text("Login")
                             .fontWeight(.medium)
                             .frame(maxWidth: 260)
@@ -42,8 +44,12 @@ struct LoginView: View {
                             .padding(8)
                             .background(Color.gray)
                             .cornerRadius(8)
-                    })
+                    }
+                    .fullScreenCover(isPresented: $loginFlag) {
+                        MainView()
+                    }
                 }
+
                 .frame(height: 200)
                 
                 Button(action: {
