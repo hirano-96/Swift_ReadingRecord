@@ -30,21 +30,6 @@ struct LoginView: View {
                         .frame(maxWidth: 280)
                         .overlay(RoundedRectangle(cornerSize: CGSize(width: 8.0, height: 8.0))
                             .stroke(Color.primary))
-                }
-                .frame(height: 100)
-                
-                HStack{
-                    Button(action: {
-                        print("ユーザー作成")
-                    },
-                    label: {
-                        Text("Cerate User")
-                            .fontWeight(.medium)
-                            .frame(minWidth: 160)
-                            .foregroundColor(Color.secondary)
-                            .padding(12)
-                            .cornerRadius(8)
-                    })
                     
                     Button(action: {
                         print("ログイン処理")
@@ -52,14 +37,26 @@ struct LoginView: View {
                     label: {
                         Text("Login")
                             .fontWeight(.medium)
-                            .frame(minWidth: 160)
+                            .frame(maxWidth: 260)
                             .foregroundColor(Color.primary)
-                            .padding(12)
+                            .padding(8)
                             .background(Color.gray)
                             .cornerRadius(8)
                     })
-                    
                 }
+                .frame(height: 200)
+                
+                Button(action: {
+                    print("ユーザー作成")
+                },
+                label: {
+                    Text("Cerate User")
+                        .fontWeight(.medium)
+                        .frame(minWidth: 160)
+                        .foregroundColor(Color.secondary)
+                        .padding(12)
+                        .cornerRadius(8)
+                })
                 Spacer()
             }
             .frame(height: 400)
