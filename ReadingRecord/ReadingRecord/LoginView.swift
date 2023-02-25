@@ -57,7 +57,6 @@ struct LoginView: View {
                         .padding(12)
                         .cornerRadius(8)
                 })
-                Spacer()
             }
             .frame(height: 400)
         }
